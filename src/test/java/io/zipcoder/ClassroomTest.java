@@ -25,6 +25,12 @@ public class ClassroomTest {
     List<Double> testScores3 = new ArrayList<>(Arrays.asList(99.8, 89.1));
     Student testStudent3 = new Student(testFirstName3, testLastName3, testScores3);
 
+    String testFirstName4 = "Dianna";
+    String testLastName4 = "Prince";
+    List<Double> testScores4 = new ArrayList<>(Arrays.asList(90.0, 70.0));
+    Student testStudent4 = new Student(testFirstName4, testLastName4, testScores4);
+
+
     @Test
     public void testNullaryConstructor() {
         //Given
@@ -83,19 +89,67 @@ public class ClassroomTest {
     @Test
     public void testAddStudent() {
         //Given
-        Student[] students = new Student[4];
+        Student[] students = new Student[5];
         students[0] = testStudent;
         students[1] = testStudent2;
         Classroom testClassroom = new Classroom(students);
 
         //when
         int expectedClassSize = 3;
+        int classCount = 0;
         testClassroom.addStudent(testStudent3);
+        for (Student student : students) {
+            if (student != null)
+                classCount++;
+        }
+        //then
+        Assert.assertEquals(expectedClassSize, classCount);
+    }
+
+    @Test
+    public void testRemoveStudent() {
+        //Given
+        Student[] students = new Student[5];
+        students[0] = testStudent;
+        students[1] = testStudent2;
+        students[2] = testStudent3;
+        Classroom testClassroom = new Classroom(students);
+
+        //when
+        int expectedClassSize = 2;
+        int classCount = 0;
+        testClassroom.removeStudent("Steve", "Blake");
+        for (Student student : students) {
+            if (student != null)
+                classCount++;
+        }
 
         //then
-        Assert.assertEquals(expectedClassSize, students.length);
-
+        Assert.assertEquals(expectedClassSize, classCount);
     }
+
+    @Test
+    public void testRemoveStudent2() {
+        //Given
+        Student[] students = new Student[3];  // will throw a null pointer exception error if array size > number of students in class!
+        students[0] = testStudent;
+        students[1] = testStudent2;
+        students[2] = testStudent3;
+        Classroom testClassroom = new Classroom(students);
+
+        //when2
+        int expectedClassSize2 = 3;
+        int classCount2 = 0;
+        testClassroom.removeStudent("Mary", "Blake");
+        for (Student student : students) {
+            if (student != null)
+                classCount2++;
+        }
+
+        //then
+        Assert.assertEquals(expectedClassSize2, classCount2 );
+    }
+
 
 
 }
