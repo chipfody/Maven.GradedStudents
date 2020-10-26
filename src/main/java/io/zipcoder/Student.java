@@ -1,6 +1,5 @@
 package io.zipcoder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
@@ -31,8 +30,11 @@ public class Student {
         this.lastName = lastName;
     }
 
+    public List<Double> getExamScores() {
+        return examScores;
+    }
 
-    public String getExamScores() {
+    public String listExamScores() {
         String examScoreList = "Exam Scores:\n";
         for (int i = 0; i < examScores.size(); i++) {
             examScoreList += "    Exam " + (i + 1) + " -> " + Math.round(examScores.get(i)) + "\n";
@@ -52,18 +54,18 @@ public class Student {
         examScores.set(examNumber - 1, newScore);
     }
 
-    public int getAverageExamScore() {
+    public long getAverageExamScore() {
         Double sum = 0.0;
         for (Double score : examScores) {
             sum += score;
         }
-        return (int) Math.round(sum / examScores.size());
+        return Math.round(sum / examScores.size());
     }
 
 
     @Override
     public String toString() {
         return "Student Name: " + firstName + " " + lastName + "\n" +
-                "Average Score: " + getAverageExamScore() +"\n" + getExamScores();
+                "Average Score: " + getAverageExamScore() +"\n" + listExamScores();
                  }
 }

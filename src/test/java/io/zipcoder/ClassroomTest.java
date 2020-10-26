@@ -71,6 +71,24 @@ public class ClassroomTest {
     }
 
     @Test
+    public void testStudentSummary() {
+
+        Classroom testClassroom = new Classroom();
+        //when
+        int totalScoreExpected = 366;
+        int totalExamsExpected = 4;
+        int[] returnedScoringData = testClassroom.studentSummary(testStudent);
+        int actualScoreTotal = returnedScoringData[0];
+        int actualTotalExams = returnedScoringData[1];
+
+        System.out.println(actualScoreTotal + " " + actualTotalExams);
+
+        //then
+        Assert.assertEquals(totalScoreExpected, actualScoreTotal);
+        Assert.assertEquals(totalExamsExpected, actualTotalExams);
+        }
+
+    @Test
     public void testClassAverageScore() {
         //Given
         Student[] students = new Student[2];
@@ -83,7 +101,19 @@ public class ClassroomTest {
 
         //then
         Assert.assertEquals(expectedClassAverage, testClassroom.getClassAverage());
+    }
 
+    @Test
+    public void testClassAverageScore2() {
+        //Given
+        Student [] students2 = new Student[0];
+        Classroom testClassroom2 = new Classroom(students2);
+
+        //when
+        int expectedClassAverage2 = 0;
+
+        //then
+        Assert.assertEquals(expectedClassAverage2, testClassroom2.getClassAverage());
     }
 
     @Test

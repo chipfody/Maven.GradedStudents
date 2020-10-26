@@ -25,12 +25,30 @@ public class Classroom {
     }
 
     public int getClassAverage() {
-        int classAverage = 0;
-        int totalTests = 0;
+        int scoreSummary = 0;
+        int numberOfTests = 0;
         for (int i = 0; i < students.length; i++) {
-            classAverage += students[i].getAverageExamScore();
+            scoreSummary += studentSummary(students[i])[0];
+            numberOfTests += studentSummary(students[i])[1];
         }
-        return (int) classAverage / students.length;
+        if (numberOfTests == 0) {
+            return 0;
+        }else {
+            return (int) scoreSummary / numberOfTests;
+        }
+    }
+    public int[] studentSummary(Student student) {
+        int[] studentTotals = new int[2];
+        int examTotals = 0;
+        int totalExams = 0;
+        for (int i = 0; i < student.getExamScores().size(); i++) {
+            examTotals += student.getExamScores().get(i);
+            totalExams++;
+        }
+        studentTotals[0] = examTotals;
+        studentTotals[1] = totalExams;
+
+        return studentTotals;
     }
 
     public void addStudent(Student newStudent) {

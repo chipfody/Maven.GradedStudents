@@ -1,7 +1,6 @@
 package io.zipcoder;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -36,10 +35,10 @@ public class StudentTest {
     }
 
     @Test
-    public void testGetExamScores() {
+    public void testListExamScores() {
         //when
         String expectedOutput = "Exam Scores:\n    Exam 1 -> 100\n    Exam 2 -> 98\n    Exam 3 -> 87\n    Exam 4 -> 82\n";
-        String actualOutput = testStudent.getExamScores();
+        String actualOutput = testStudent.listExamScores();
         System.out.println(actualOutput);
 
         //then
@@ -53,7 +52,7 @@ public class StudentTest {
         testStudent2.addExamScore(80.8);
 
         //then
-        Assert.assertEquals(expectedOutput, testStudent2.getExamScores());
+        Assert.assertEquals(expectedOutput, testStudent2.listExamScores());
     }
 
     @Test
@@ -63,7 +62,7 @@ public class StudentTest {
         int replaceExamNumber =3;
         String expectedOutput = "Exam 1 -> 100\nExam 2 -> 98\nExam 3 -> 79\nExam 4 -> 82\n";
         testStudent.setExamScore(replaceExamNumber, newExamScore);
-        String actualOutput = testStudent.getExamScores();
+        String actualOutput = testStudent.listExamScores();
 
         //then
         Assert.assertEquals(expectedOutput, actualOutput);
@@ -73,7 +72,7 @@ public class StudentTest {
     public void testGetAverageExamScore() {
         //when
         int expectedAverage = 92;
-        int actualAverage = testStudent.getAverageExamScore();
+        long actualAverage = testStudent.getAverageExamScore();
 
         //then
         Assert.assertEquals(expectedAverage, actualAverage);
