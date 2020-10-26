@@ -1,5 +1,6 @@
 package io.zipcoder;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -79,10 +80,20 @@ public class Classroom {
     }
 
     public Student[] getStudentByScore(Student[] students) {
-        Student[] resultArray = new Student[students.length];
+        CompareStudents compareStudents = new CompareStudents();
+        Arrays.sort(students, compareStudents);
 
-
-        return resultArray;
+        return students;
     }
+    class CompareStudents implements Comparator<Student>{
+        public int compare(Student s1, Student s2) {
+        if (s1.getAverageExamScore() == s2.getAverageExamScore()) {
+            return (s1.getLastName()).compareTo(s2.getLastName());
+        } else {
+            return s2.getAverageExamScore() - s1.getAverageExamScore();
+        }
+    }
+    }
+
 }
 

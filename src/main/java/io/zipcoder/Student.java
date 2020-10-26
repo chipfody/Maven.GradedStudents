@@ -54,12 +54,12 @@ public class Student {
         examScores.set(examNumber - 1, newScore);
     }
 
-    public long getAverageExamScore() {
+    public int getAverageExamScore() {
         Double sum = 0.0;
         for (Double score : examScores) {
             sum += score;
         }
-        return Math.round(sum / examScores.size());
+        return (int) Math.round(sum / examScores.size());
     }
 
 

@@ -30,6 +30,40 @@ public class ClassroomTest {
     List<Double> testScores4 = new ArrayList<>(Arrays.asList(90.0, 70.0));
     Student testStudent4 = new Student(testFirstName4, testLastName4, testScores4);
 
+    String testFirstName5 = "Ringo";
+    String testLastName5 = "Starr";
+    List<Double> testScores5 = new ArrayList<>(Arrays.asList(10.0, 30.0, 45.0));
+    Student testStudent5 = new Student(testFirstName5, testLastName5, testScores5);
+
+    String testFirstName6 = "Thorin";
+    String testLastName6 = "Oakenshield";
+    List<Double> testScores6 = new ArrayList<>(Arrays.asList());
+    Student testStudent6 = new Student(testFirstName6, testLastName6, testScores6);
+
+    String testFirstName7 = "Carl";
+    String testLastName7 = "Sagan";
+    List<Double> testScores7 = new ArrayList<>(Arrays.asList(100.0, 100.0, 100.0, 100.0, 100.0));
+    Student testStudent7 = new Student(testFirstName7, testLastName7, testScores7);
+
+    String testFirstName8 = "Ido";
+    String testLastName8 = "Poorly";
+    List<Double> testScores8 = new ArrayList<>(Arrays.asList(35.0, 42.8, 27.9));
+    Student testStudent8 = new Student(testFirstName8, testLastName8, testScores8);
+
+    String testFirstName9 = "Roseann";
+    String testLastName9 = "Barr";
+    List<Double> testScores9 = new ArrayList<>(Arrays.asList(55.0, 61.2, 57.9, 48.7, 39.7));
+    Student testStudent9 = new Student(testFirstName9, testLastName9, testScores9);
+
+    String testFirstName10 = "Popey";
+    String testLastName10 = "DaSailor";
+    List<Double> testScores10 = new ArrayList<>(Arrays.asList(69.9, 71.3, 65.0, 72.6));
+    Student testStudent10 = new Student(testFirstName10, testLastName10, testScores10);
+
+
+
+
+
 
     @Test
     public void testNullaryConstructor() {
@@ -180,6 +214,29 @@ public class ClassroomTest {
         Assert.assertEquals(expectedClassSize2, classCount2 );
     }
 
+    @Test
+    public void testGetStudentByScore() {
+        //Given
+        Student[] students = new Student[10];  // will throw a null pointer exception error if array size > number of students in class!
+        students[0] = testStudent;
+        students[1] = testStudent2;
+        students[2] = testStudent3;
+        students[3] = testStudent4;
+        students[4] = testStudent5;
+        students[5] = testStudent6;
+        students[6] = testStudent7;
+        students[7] = testStudent8;
+        students[8] = testStudent9;
+        students[9] = testStudent10;
+        Classroom testClassroom = new Classroom(students);
 
+        //when
+        Student[] expectedOrder = new Student[] {testStudent7, testStudent3, testStudent, testStudent2, testStudent4, testStudent10, testStudent9, testStudent8, testStudent5, testStudent6};
+        Student[] actual = new Student[10];
+        actual = testClassroom.getStudentByScore(students);
+
+        //then
+        Assert.assertArrayEquals(expectedOrder, actual);
+    }
 
 }
