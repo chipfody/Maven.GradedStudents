@@ -1,8 +1,6 @@
 package io.zipcoder;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 public class Classroom {
 
@@ -80,20 +78,41 @@ public class Classroom {
     }
 
     public Student[] getStudentByScore(Student[] students) {
-        CompareStudents compareStudents = new CompareStudents();
+        CompareStudents compareStudents = new CompareStudents();        //instantiate an new instance of the comparator we created
         Arrays.sort(students, compareStudents);
 
         return students;
     }
-    class CompareStudents implements Comparator<Student>{
+    class CompareStudents implements Comparator<Student>{               //create an inner class comparator
         public int compare(Student s1, Student s2) {
-        if (s1.getAverageExamScore() == s2.getAverageExamScore()) {
+        if (s1.getAverageExamScore() == s2.getAverageExamScore()) {     //if both have the same average, do a simple compare to list alphabetically
             return (s1.getLastName()).compareTo(s2.getLastName());
         } else {
             return s2.getAverageExamScore() - s1.getAverageExamScore();
+            }
         }
     }
+
+    public Map<String, ArrayList<Student>> getGradebook(Student[] students) {
+        final Map <String, ArrayList<Student>> gradebook = new HashMap<>();
+        gradebook.put("A", null);
+        gradebook.put("B", null);
+        gradebook.put("C", null);
+        gradebook.put("D", null);
+        gradebook.put("F", null);
+
+        int classSize = students.length;
+
+        for (int i = 0; i < classSize; i++) {
+            int studentAvg = students[0].getAverageExamScore();
+
+            if (studentAvg <(classSize * 0.1)){}
+
+
+        }
+        return gradebook;
     }
+
 
 }
 

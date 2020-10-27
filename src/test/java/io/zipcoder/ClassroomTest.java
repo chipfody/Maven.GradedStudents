@@ -234,9 +234,30 @@ public class ClassroomTest {
         Student[] expectedOrder = new Student[] {testStudent7, testStudent3, testStudent, testStudent2, testStudent4, testStudent10, testStudent9, testStudent8, testStudent5, testStudent6};
         Student[] actual = new Student[10];
         actual = testClassroom.getStudentByScore(students);
+        System.out.println(Arrays.toString(actual));
 
         //then
         Assert.assertArrayEquals(expectedOrder, actual);
+    }
+
+    @Test
+    public void testGetGradebook() {
+        //Given
+        Student[] students = new Student[10];  // will throw a null pointer exception error if array size > number of students in class!
+        students[0] = testStudent;
+        students[1] = testStudent2;
+        students[2] = testStudent3;
+        students[3] = testStudent4;
+        students[4] = testStudent5;
+        students[5] = testStudent6;
+        students[6] = testStudent7;
+        students[7] = testStudent8;
+        students[8] = testStudent9;
+        students[9] = testStudent10;
+        Classroom testClassroom = new Classroom(students);
+
+        //when
+
     }
 
 }
