@@ -3,9 +3,7 @@ package io.zipcoder;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ClassroomTest {
 
@@ -114,8 +112,6 @@ public class ClassroomTest {
         int[] returnedScoringData = testClassroom.studentSummary(testStudent);
         int actualScoreTotal = returnedScoringData[0];
         int actualTotalExams = returnedScoringData[1];
-
-        System.out.println(actualScoreTotal + " " + actualTotalExams);
 
         //then
         Assert.assertEquals(totalScoreExpected, actualScoreTotal);
@@ -234,7 +230,6 @@ public class ClassroomTest {
         Student[] expectedOrder = new Student[] {testStudent7, testStudent3, testStudent, testStudent2, testStudent4, testStudent10, testStudent9, testStudent8, testStudent5, testStudent6};
         Student[] actual = new Student[10];
         actual = testClassroom.getStudentByScore(students);
-        System.out.println(Arrays.toString(actual));
 
         //then
         Assert.assertArrayEquals(expectedOrder, actual);
@@ -270,16 +265,50 @@ public class ClassroomTest {
 
         //then
 
-       Assert.assertEquals('B', actualGrade);
-//        Assert.assertEquals('C', actualGrade2);
-//        Assert.assertEquals('B', actualGrade3);
-//        Assert.assertEquals('C', actualGrade4);
-//        Assert.assertEquals('D', actualGrade5);
-//        Assert.assertEquals('F', actualGrade6);
-//        Assert.assertEquals('A', actualGrade7);
-//        Assert.assertEquals('D', actualGrade8);
-//        Assert.assertEquals('D', actualGrade9);
-//        Assert.assertEquals('D', actualGrade10);
+        Assert.assertEquals('C', actualGrade);
+        Assert.assertEquals('C', actualGrade2);
+        Assert.assertEquals('B', actualGrade3);
+        Assert.assertEquals('C', actualGrade4);
+        Assert.assertEquals('D', actualGrade5);
+        Assert.assertEquals('F', actualGrade6);
+        Assert.assertEquals('A', actualGrade7);
+        Assert.assertEquals('D', actualGrade8);
+        Assert.assertEquals('D', actualGrade9);
+        Assert.assertEquals('D', actualGrade10);
+
+    }
+
+    @Test
+    public void testGradeBook() {
+        //Given
+        Student[] students = new Student[10];  // will throw a null pointer exception error if array size > number of students in class!
+        students[0] = testStudent;
+        students[1] = testStudent2;
+        students[2] = testStudent3;
+        students[3] = testStudent4;
+        students[4] = testStudent5;
+        students[5] = testStudent6;
+        students[6] = testStudent7;
+        students[7] = testStudent8;
+        students[8] = testStudent9;
+        students[9] = testStudent10;
+        Classroom testClassroom = new Classroom(students);
+
+        //when
+        Map<Character, ArrayList<Student>> testMap = new HashMap<>();
+        ArrayList<Student> aList = new ArrayList<>(Arrays.asList(testStudent7));
+        ArrayList<Student> bList = new ArrayList<>(Arrays.asList(testStudent3));
+        ArrayList<Student> cList = new ArrayList<>(Arrays.asList(testStudent, testStudent2, testStudent4));
+        ArrayList<Student> dList = new ArrayList<>(Arrays.asList(testStudent5, testStudent8, testStudent9, testStudent10));
+        ArrayList<Student> fList = new ArrayList<>(Arrays.asList(testStudent6));
+        testMap.put('A', aList);
+        testMap.put('B', bList);
+        testMap.put('C', cList);
+        testMap.put('D', dList);
+        testMap.put('F', fList);
+
+        //then
+        Assert.assertEquals(testMap, testClassroom.getGradeBook(students));
 
     }
 

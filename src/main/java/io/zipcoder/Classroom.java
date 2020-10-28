@@ -64,16 +64,16 @@ public class Classroom {
         for (int i = 0; i < students.length; i++) {
             if (students[i].getFirstName() == firstName && students[i].getLastName() == lastName) {
                 next = i;
-                break;
+                break;   //once the student is found, exit the loop
             }
         }
             if (next == 0) {
                 System.out.println("Student not found");
             } else {
                 for (int j = next; j < students.length - 1; j++) {
-                    students[j] = students[j + 1];
+                    students[j] = students[j + 1];  //after student is removed, fill "hole" by moving each student back by one space
                 }
-                students[students.length - 1] = null;
+                students[students.length - 1] = null;  //replace the last place with "null" to avoid duplicating the last student in the list
             }
     }
 
@@ -96,19 +96,7 @@ public class Classroom {
 
     public  Map<Character, ArrayList<Student>> getGradeBook(Student[] students) {
 
-//        ArrayList<Student> aList = new ArrayList<>();
-//        ArrayList<Student> bList = new ArrayList<>();
-//        ArrayList<Student> cList = new ArrayList<>();
-//        ArrayList<Student> dList = new ArrayList<>();
-//        ArrayList<Student> fList = new ArrayList<>();
-
         final Map <Character, ArrayList<Student>> gradeBook = new HashMap<>();
-//            gradeBook.put('A', aList);
-//            gradeBook.put('B', bList);
-//            gradeBook.put('C', cList);
-//            gradeBook.put('D', dList);
-//            gradeBook.put('F', fList);
-
 
             for (int i = 0; i < students.length; i++) {
                 char studentGrade = setGrade(students[i], students);
@@ -118,30 +106,11 @@ public class Classroom {
                     gradeBook.put(studentGrade, gradeList);
                 } else {
                     gradeBook.get(studentGrade).add(students[i]);
-
-
                 }
             }
-
-
         return gradeBook;
+  }
 
-//        HashMap<String, ArrayList<Item>> items = new HashMap<String, ArrayList<Item>>();
-//
-//        public synchronized void addToList(String mapKey, Item myItem) {
-//            List<Item> itemsList = items.get(mapKey);
-
-            // if list does not exist create it
-
-//        if(itemsList == null) {
-//            itemsList = new ArrayList<Item>();
-//            itemsList.add(myItem);
-//            items.put(mapKey, itemsList);
-//        } else {
-//            // add if item is not already in list
-//            if(!itemsList.contains(myItem)) itemsList.add(myItem);
-//        }
-    }
 
     public char setGrade(Student student, Student[] students) {
 
@@ -166,9 +135,6 @@ public class Classroom {
         if (classGrades.indexOf(studentAverage) >= (classSize * .90))
             grade = 'A';
 
-//        System.out.println("class grades: " + classGrades);
-        System.out.println(studentAverage);
-        System.out.println("index = " + classGrades.indexOf(student.getAverageExamScore()));
         return grade;
     }
 
