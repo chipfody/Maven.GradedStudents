@@ -241,7 +241,7 @@ public class ClassroomTest {
     }
 
     @Test
-    public void testGetGradebook() {
+    public void testSetGradebook() {
         //Given
         Student[] students = new Student[10];  // will throw a null pointer exception error if array size > number of students in class!
         students[0] = testStudent;
@@ -257,6 +257,29 @@ public class ClassroomTest {
         Classroom testClassroom = new Classroom(students);
 
         //when
+        char actualGrade = testClassroom.setGrade(testStudent, students);
+        char actualGrade2 = testClassroom.setGrade(testStudent2, students);
+        char actualGrade3 = testClassroom.setGrade(testStudent3, students);
+        char actualGrade4 = testClassroom.setGrade(testStudent4, students);
+        char actualGrade5 = testClassroom.setGrade(testStudent5, students);
+        char actualGrade6 = testClassroom.setGrade(testStudent6, students);
+        char actualGrade7 = testClassroom.setGrade(testStudent7, students);
+        char actualGrade8 = testClassroom.setGrade(testStudent8, students);
+        char actualGrade9 = testClassroom.setGrade(testStudent9, students);
+        char actualGrade10 = testClassroom.setGrade(testStudent10, students);
+
+        //then
+
+       Assert.assertEquals('B', actualGrade);
+//        Assert.assertEquals('C', actualGrade2);
+//        Assert.assertEquals('B', actualGrade3);
+//        Assert.assertEquals('C', actualGrade4);
+//        Assert.assertEquals('D', actualGrade5);
+//        Assert.assertEquals('F', actualGrade6);
+//        Assert.assertEquals('A', actualGrade7);
+//        Assert.assertEquals('D', actualGrade8);
+//        Assert.assertEquals('D', actualGrade9);
+//        Assert.assertEquals('D', actualGrade10);
 
     }
 

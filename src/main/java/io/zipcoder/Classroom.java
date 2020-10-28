@@ -83,6 +83,7 @@ public class Classroom {
 
         return students;
     }
+
     class CompareStudents implements Comparator<Student>{               //create an inner class comparator
         public int compare(Student s1, Student s2) {
         if (s1.getAverageExamScore() == s2.getAverageExamScore()) {     //if both have the same average, do a simple compare to list alphabetically
@@ -93,24 +94,82 @@ public class Classroom {
         }
     }
 
-    public Map<String, ArrayList<Student>> getGradebook(Student[] students) {
-        final Map <String, ArrayList<Student>> gradebook = new HashMap<>();
-        gradebook.put("A", null);
-        gradebook.put("B", null);
-        gradebook.put("C", null);
-        gradebook.put("D", null);
-        gradebook.put("F", null);
+    public  Map<Character, ArrayList<Student>> getGradeBook(Student[] students) {
+
+//        ArrayList<Student> aList = new ArrayList<>();
+//        ArrayList<Student> bList = new ArrayList<>();
+//        ArrayList<Student> cList = new ArrayList<>();
+//        ArrayList<Student> dList = new ArrayList<>();
+//        ArrayList<Student> fList = new ArrayList<>();
+
+        final Map <Character, ArrayList<Student>> gradeBook = new HashMap<>();
+//            gradeBook.put('A', aList);
+//            gradeBook.put('B', bList);
+//            gradeBook.put('C', cList);
+//            gradeBook.put('D', dList);
+//            gradeBook.put('F', fList);
+
+
+            for (int i = 0; i < students.length; i++) {
+                char studentGrade = setGrade(students[i], students);
+                if (gradeBook.get(studentGrade) == null) {
+                    ArrayList<Student> gradeList = new ArrayList<>();
+                    gradeList.add(students[i]);
+                    gradeBook.put(studentGrade, gradeList);
+                } else {
+                    gradeBook.get(studentGrade).add(students[i]);
+
+
+                }
+            }
+
+
+        return gradeBook;
+
+//        HashMap<String, ArrayList<Item>> items = new HashMap<String, ArrayList<Item>>();
+//
+//        public synchronized void addToList(String mapKey, Item myItem) {
+//            List<Item> itemsList = items.get(mapKey);
+
+            // if list does not exist create it
+
+//        if(itemsList == null) {
+//            itemsList = new ArrayList<Item>();
+//            itemsList.add(myItem);
+//            items.put(mapKey, itemsList);
+//        } else {
+//            // add if item is not already in list
+//            if(!itemsList.contains(myItem)) itemsList.add(myItem);
+//        }
+    }
+
+    public char setGrade(Student student, Student[] students) {
 
         int classSize = students.length;
+        ArrayList<Integer> classGrades = new ArrayList<>();
+        char grade = ' ';
+        int studentAverage = student.getAverageExamScore();
 
         for (int i = 0; i < classSize; i++) {
-            int studentAvg = students[0].getAverageExamScore();
-
-            if (studentAvg <(classSize * 0.1)){}
-
-
+            classGrades.add(students[i].getAverageExamScore());
         }
-        return gradebook;
+        Collections.sort(classGrades);
+
+        if (classGrades.indexOf(studentAverage) < (classSize * .10))
+            grade = 'F';
+        if ((classGrades.indexOf(studentAverage) >= (classSize * .10)) && (classGrades.indexOf(studentAverage) < (classSize * .50)))
+            grade = 'D';
+        if ((classGrades.indexOf(studentAverage) >= (classSize * .50)) && (classGrades.indexOf(studentAverage) <= (classSize * .70)))
+            grade = 'C';
+        if ((classGrades.indexOf(studentAverage) > (classSize * .70)) && (classGrades.indexOf(studentAverage) < (classSize * .90)))
+            grade =  'B';
+        if (classGrades.indexOf(studentAverage) >= (classSize * .90))
+            grade = 'A';
+
+//        System.out.println("class grades: " + classGrades);
+        System.out.println(studentAverage);
+        System.out.println("index = " + classGrades.indexOf(student.getAverageExamScore()));
+        return grade;
     }
 
 
